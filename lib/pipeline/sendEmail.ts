@@ -37,6 +37,9 @@ export function renderEmail(items: AnalysedItem[], weekStart: string, digestId: 
   const call = items.filter((i) => i.verdict === "call" && i.signal_type !== "policy_change");
   const watch = items.filter((i) => i.verdict === "watch" && i.signal_type !== "policy_change");
   const skipped = items.filter((i) => i.verdict === "skip").length;
+  // Header counts match the dashboard: every call/watch item, policy included.
+  const callTotal = items.filter((i) => i.verdict === "call").length;
+  const watchTotal = items.filter((i) => i.verdict === "watch").length;
   const link = `${appUrl()}/digests/${digestId}`;
   const week = formatDate(weekStart);
 
@@ -44,7 +47,7 @@ export function renderEmail(items: AnalysedItem[], weekStart: string, digestId: 
 <html><body style="margin:0;padding:24px;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#111827;">
 <div style="max-width:640px;margin:0 auto;">
   <h1 style="margin:0;font-size:20px;">CSR Partnership Radar</h1>
-  <p style="margin:4px 0 0;font-size:14px;color:${MUTED};">Week of ${esc(week)} &middot; ${call.length} to call &middot; ${watch.length} to watch</p>
+  <p style="margin:4px 0 0;font-size:14px;color:${MUTED};">Week of ${esc(week)} &middot; ${callTotal} to call &middot; ${watchTotal} to watch</p>
   ${section("Call this week", call)}
   ${section("Watch", watch)}
   ${section("Policy & regulation", policy)}
@@ -52,7 +55,7 @@ export function renderEmail(items: AnalysedItem[], weekStart: string, digestId: 
 </div>
 </body></html>`;
 
-  return { subject: `CSR Radar, week of ${week}: ${call.length} to call, ${watch.length} to watch`, html };
+  return { subject: `CSR Radar, week of ${week}: ${callTotal} to call, ${watchTotal} to watch`, html };
 }
 
 export async function sendEmail(input: {

@@ -6,7 +6,7 @@ Every item answers one question: **"Is this worth a call this week?"**
 
 Signal types: `new_initiative`, `increased_allocation`, `partner_search`, `policy_change`.
 
-- Live app: https://csr-partnership-radar.vercel.app
+- Live app: https://csr-partnership-radar-eight.vercel.app
 - Components map: [docs/components-map.png](docs/components-map.png)
 
 ![Components map](docs/components-map.png)
