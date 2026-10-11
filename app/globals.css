@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --color-accent: #1e3a8a;
+  --color-accent-hover: #1e40af;
+  --radius-card: 6px;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
