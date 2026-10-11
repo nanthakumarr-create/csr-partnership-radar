@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { connection } from "next/server";
 import { DigestView } from "@/components/DigestView";
+import { EmptyState } from "@/components/ui";
 import { getLatestDigest } from "@/lib/queries";
 
 export default async function LatestDigestPage() {
@@ -9,14 +10,14 @@ export default async function LatestDigestPage() {
 
   if (!digest) {
     return (
-      <p className="text-gray-700">
-        No digest yet. Run one from{" "}
-        <Link href="/settings" className="text-accent underline">
-          Settings
+      <EmptyState title="No digest yet">
+        The first digest is created on Monday at 06:30 IST, or you can{" "}
+        <Link href="/settings" className="font-medium text-accent underline">
+          run one now from Settings
         </Link>
         .
-      </p>
+      </EmptyState>
     );
   }
-  return <DigestView digest={digest} />;
+  return <DigestView digest={digest} eyebrow="This week" />;
 }

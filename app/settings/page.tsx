@@ -1,5 +1,6 @@
 import { connection } from "next/server";
 import { SettingsForm } from "@/components/SettingsForm";
+import { PageHeader } from "@/components/ui";
 import { loadSettings } from "@/lib/pipeline/loadSettings";
 
 export default async function SettingsPage() {
@@ -7,9 +8,8 @@ export default async function SettingsPage() {
   const settings = await loadSettings();
 
   return (
-    <div>
-      <h1 className="text-xl font-semibold text-gray-900">Settings</h1>
-      <p className="mt-1 text-sm text-gray-600">Changes apply from the next digest run.</p>
+    <div className="space-y-6">
+      <PageHeader eyebrow="Configuration" title="Settings" meta="Changes apply from the next digest run." />
       <SettingsForm initial={settings} />
     </div>
   );

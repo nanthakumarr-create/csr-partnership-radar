@@ -2,13 +2,15 @@
 
 export default function ErrorPage({ error, retry }: { error: Error & { digest?: string }; retry: () => void }) {
   return (
-    <div role="alert">
-      <h1 className="text-xl font-semibold text-gray-900">Something went wrong</h1>
-      <p className="mt-2 text-gray-700">The page could not load its data: {error.message || "unknown error"}.</p>
+    <div role="alert" className="rounded-lg border border-red-200 bg-white px-6 py-10 text-center">
+      <p className="text-base font-semibold text-ink">Something went wrong</p>
+      <p className="mx-auto mt-2 max-w-md text-sm text-ink-2">
+        The page could not load its data: {error.message || "unknown error"}.
+      </p>
       <button
         type="button"
         onClick={() => retry()}
-        className="mt-4 rounded-[6px] border border-gray-300 px-3 py-1.5 text-sm text-gray-900 hover:border-accent"
+        className="mt-5 rounded-md border border-line-strong bg-white px-4 py-2 text-sm font-semibold text-ink hover:border-accent hover:text-accent"
       >
         Try again
       </button>

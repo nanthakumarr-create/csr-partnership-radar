@@ -10,12 +10,10 @@ export default async function DigestPage(props: PageProps<"/digests/[id]">) {
 
   return (
     <div>
-      <p className="mb-4 text-sm">
-        <Link href="/digests" className="text-accent hover:underline">
-          ← All digests
-        </Link>
-      </p>
-      <DigestView digest={digest} />
+      <Link href="/digests" className="mb-4 inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline">
+        ← All digests
+      </Link>
+      <DigestView digest={digest} eyebrow="Past digest" />
     </div>
   );
 }

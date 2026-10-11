@@ -26,3 +26,24 @@ export function formatDate(iso: string | null): string {
     timeZone: "Asia/Kolkata",
   });
 }
+
+export function formatDateTime(iso: string | null): string {
+  if (!iso) return "";
+  return new Date(iso).toLocaleString("en-IN", {
+    day: "numeric",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Asia/Kolkata",
+  });
+}
+
+/** Next scheduled run: Mondays 01:00 UTC (06:30 IST). */
+export function nextCronRun(now: Date = new Date()): Date {
+  const next = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 1, 0, 0));
+  const daysUntilMonday = (8 - next.getUTCDay()) % 7;
+  next.setUTCDate(next.getUTCDate() + daysUntilMonday);
+  if (next.getTime() <= now.getTime()) next.setUTCDate(next.getUTCDate() + 7);
+  return next;
+}
